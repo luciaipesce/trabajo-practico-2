@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Evaluador de Fortaleza de Contraseña 🔐
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto fue desarrollado como parte del Trabajo Práctico 2 de la asignatura Desarrollo de Software.
 
-## Available Scripts
+Es una aplicación web simple que permite al usuario ingresar una contraseña y recibir una clasificación de su fortaleza. También cuenta con funcionalidades adicionales que mejoran la experiencia de usuario.
 
-In the project directory, you can run:
+# ✅ Requisitos Técnicos Generales Cumplidos
 
-### `npm start`
+Contar con al menos 3 componentes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Contar con al menos 1 componente que reciba una propiedad
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Contar con al menos 1 componente con estado
 
-### `npm test`
+# ✅ Requisitos Técnicos Específicos Cumplidos
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Posee una entrada de texto para que el usuario ingrese la contraseña
 
-### `npm run build`
+Posee un botón para mostrar/ocultar la contraseña
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clasifica y muestra la fortaleza con las palabras: "Poco segura", "Segura" o "Muy segura"
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+La fortaleza se actualiza en tiempo real al escribir
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Se utiliza la librería zxcvbn para evaluar la fortaleza
 
-### `npm run eject`
+# 🌟 Power Ups Implementados
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Posee un botón para copiar la contraseña al portapapeles ✅
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Muestra un mensaje visual indicando que fue copiada (se oculta tras 3 segundos) ✅
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Posee un botón para generar una contraseña aleatoria de al menos 8 caracteres que incluye mayúsculas, minúsculas y números ✅
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# ⚠ Power Up No Implementado
 
-## Learn More
+El panel avanzado con parámetros personalizados para la generación de contraseñas no está implementado. Se intentó desarrollar, pero se presentaron errores y no fue posible integrarlo completamente a tiempo.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# 📌 Observación sobre la Entrega
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Me atrasé con la entrega del TP porque en un inicio, según la planificación original, se indicaba como fecha de entrega el 24/04, por eso prioricé funcionalidades básicas y el diseño responsivo.
 
-### Code Splitting
+# 💅 Diseño y Semántica
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+El sitio tiene un diseño atractivo, amigable y responsivo, con uso de unidades responsivas como clamp() y vh/vw, además de buena semántica HTML.
 
-### Analyzing the Bundle Size
+Incluye animaciones, degradados, retroalimentación visual y un fondo animado con SVG y CSS puro.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# 🚀 Link al sitio publicado
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🔗
