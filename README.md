@@ -48,4 +48,4 @@ Incluye animaciones, degradados, retroalimentación visual y un fondo animado co
 
 # 🚀 Link al sitio publicado
 
-🔗
+🔗 https://fortaleza-contrasenia.netlify.app/
