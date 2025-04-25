@@ -1,0 +1,260 @@
+
+/* Definí los colores en variables globlales porque en el Tp anterior renegué con esto por no hacerlo desde el principio, entonces tenía 2 millones de colores por todos lados, un desastre de mi parte */
+:root {
+  --rosa: #F96CA2;
+  --amarillo: #FFF1B6;
+  --lila: #D9B8F2;
+  --morado: #A277D4;
+  --turquesa: #6DD6C5;
+  --turquesa-oscuro: #55b5a5;
+  --rojo: #e74c3c;
+  --amarillo-oscuro: #f39c12;
+  --verde: #2ecc71;
+  --texto: #2D2D2D;
+  --globito: rgba(255, 255, 255, 0.6);
+  --sombra: rgba(0,0,0,0.1);
+}
+
+/* Contenedor general de la aplicación */
+.contenedor-evaluador {
+  display: flex;
+  padding-inline: clamp(1rem, 10vw, 4rem); /* clamp permite que el padding varíe con el ancho de la pantalla (para responsiveralo) */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 1rem;
+  gap: 2rem;
+  margin-top: 5rem;
+}
+
+/* Sección que contiene el campo, globito, mensaje y botón */
+.bloque-evaluador {
+  border: none;
+  position: relative;
+  padding: 2rem;
+  border-radius: 2rem;
+  max-width: clamp(600px, 90vw, 1000px); /* Ancho adaptable entre 600 y 1000px aprox */
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Cambia la dirección de los elementos a columna (para responsivear again) */
+  align-items: center;
+  gap: 1rem; /* Espacio entre los elementos (no es el GAP de las camperas) */
+}
+
+/* Barra superior fija con efecto de desenfoque */
+.barra-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background-color: rgba(255, 255, 255, 0.3); 
+  backdrop-filter: blur(12px);              /* Desenfoque del fondo */
+  -webkit-backdrop-filter: blur(12px);      /* Hacemos que sea compatible con Safari de IOS (porque nunca compatibilizan con Iphone)*/
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  z-index: 999;
+}
+
+/* Título con tipografía y gradiente animado */
+.titulo-header {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(1.8rem, 4vw, 3.5rem); /* Clamp lo que hace es definir un tamaño adaptable entre 1.8rem y 3.5rem (responsive) */
+  background: radial-gradient(
+    circle at center,
+    #ff9edf, #ff8f8f, #ffc163, #ffe376, #75ffca, #6df2ff, #b7c2ff, #ccb8ff, #ffa5e3
+  );
+  background-size: 200%;
+  background-clip: text;                  /* Esto lo que hace es rellenar el texto con el fondo */
+  -webkit-background-clip: text;          /* Otra vez esta cosa rara del webkit es para compatibilizarlo con Safari */
+  color: transparent;
+  animation: gradienteTexto 15s linear infinite;
+  margin: 0;
+}
+
+/* Estilos base del body */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--amarillo);
+  margin: 0;
+  padding: 0;
+}
+
+/* Campo de texto para ingresar la contraseña */
+.input-contrasenia {
+  text-overflow: ellipsis;               /* Le pone puntitos suspensivos al final del contenido por si se desborda */
+  display: flex;
+  width: 100%;
+  max-width: clamp(320px, 75vw, 800px);  /* Ancho adaptable */
+  height: clamp(3.5rem, 8vh, 5.5rem);     /* Altura adaptable (bueno, creo que ya entendimos para qué sirve clamp, no? *procede a dejar de comentar estas líneas* */
+  padding: 1.5rem 4.5rem 1.5rem 2rem;    
+  font-family: 'Poppins', sans-serif, monospace;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  letter-spacing: 0.1rem;
+  border: 3px solid var(--morado);
+  border-radius: 5rem;
+  outline: none; /* Le saca el borde azul que aparece al hacer click */
+  box-shadow: 0 4px 10px var(--sombra);
+  transition: border-color 0.2s ease-in-out;
+}
+
+/* Cambia el color del input cuando lo clickeo*/
+.input-contrasenia:focus {
+  border-color: var(--turquesa);
+}
+
+/* Tamaño de las letras del input(?*/
+.input-contrasenia[type="password"] {
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+}
+
+/* Contenedor de los íconos de acción */
+.iconos-acccion {
+  background-color: white;
+  position: absolute;
+  padding-left: 2%;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-35%); /* Esto lo que hace es centrar el contenedor de los iconos verticalmente */
+  display: flex;
+  gap: 0.6rem; 
+}
+
+.iconos-acccion button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2.5rem;
+  color: var(--morado);
+  transition: transform 0.2s; /* Le mandamos un efectito piola */
+}
+
+.iconos-acccion button:hover {
+  transform: scale(1.1); /* Cuando pasamos el mouse por encima, se agranda un poco, queda GOD este efecto */
+  color: var(--rosa);
+}
+
+/* Globito que indica la fortaleza */
+.globito-fortaleza {
+  position: absolute;
+  bottom: 65%;
+  right: 4rem;
+  transform: translateY(-50%);
+  padding: 2rem 2.3rem;
+  background-color: var(--globito);
+  color: var(--texto);
+  border-radius: 0.6rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation: animacion-globito 0.4s ease-out; /* Le configuramos una animación con keyframes (está abajo)*/
+  transition: opacity 0.3s ease, filter 0.3s ease, color 0.3s ease; /* Le ponemos una transición piola para cuando va cambiando de Poco Segura, a Segura, a Muy Segura, así se ve más dinámico y lindo :3 */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Creo la puntita del globito, el triangulito */
+.globito-fortaleza::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 15%;
+  border-width: 20px;
+  border-style: solid;
+  border-color: var(--globito) transparent transparent transparent;
+  box-shadow: var(--sombra) transparent transparent transparent;
+}
+
+/* Colores según nivel de Seguridad */
+.nivel-Poco-Segura {
+  color: var(--rojo);
+}
+/*|*/
+/*v*/
+.nivel-Segura {
+  color: var(--amarillo-oscuro);
+}
+/*|*/
+/*v*/ /* *intenta hacer una flecha para abajo* */
+.nivel-Muy-Segura {
+  color: var(--verde);
+}
+
+/* Notificación de contraseña copiada */
+.contrasenia-copiada {
+  position: absolute;
+  top: 65%;
+  margin-top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--globito);
+  color: var(--texto);
+  border-radius: 2.5rem;
+  font-weight: bold;
+  font-size: 1.35rem;
+  display: flex;
+  flex-wrap: wrap; /* Esto permite hacer un salto de línea en pantallas chicas */
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  box-shadow: 0 6px 12px var(--sombra);
+  opacity: 0; /* Inicialmente está oculto */
+  animation: aparecerMensaje 0.6s ease-out forwards, desaparecerMensaje 0.6s ease-in 2.4s forwards; /* Primero aparece, después desaparece (guau, magia!) */
+  z-index: 10; /* Para que quede por encima de todo */
+}
+
+/* Círculo con tilde animado para el mensaje de Contraseña Copiada */
+.tick {
+  background-color: var(--verde);
+  color: white;
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.3rem;
+  text-align: center;
+  line-height: 2.2rem;
+  transform: translateX(-1.2rem); /* Para centrar la tilde dentro del círculo */
+  opacity: 0; 
+  animation: tickDeslizar 0.4s ease-out 0.2s forwards; /* La tilde aparece después de que aparece el mensaje */
+}
+
+/* Animaciones: keyframes se usa para definir animaciones en CSS. Se pueden usar para crear efectos visuales en los elementos de la página. */
+@keyframes gradienteTexto {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+@keyframes animacion-globito {
+  0% {
+    opacity: 0;
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes aparecerMensaje {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes desaparecerMensaje {
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(1rem);
+  }
+}
+
+@keyframes tickDeslizar {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

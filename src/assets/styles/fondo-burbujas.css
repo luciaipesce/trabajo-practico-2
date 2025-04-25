@@ -1,0 +1,96 @@
+/*Esta es la hojita de estilos del fondo animado de burbujas, y te preguntarás, para qué hiciste ese fondo? Respuesta: no sé, me gusta renegar, lo vi por ahí y dije, ÉPICO, lo quiero hacer... y acá estamos -_- */
+
+/* Bueno, ya sabés, no voy a explicar en cada hoja de estilos lo de las variables de los colores */
+:root {
+    --rosa: #F96CA2;
+    --amarillo: #FFF1B6;
+    --lila: #D9B8F2;
+    --morado: #A277D4;
+    --turquesa: #6DD6C5;
+    --turquesa-oscuro: #55b5a5;
+}
+
+/* Te diste cuenta que no tengo la barra de scroll horizontal ni vertical? Y no, si no prestás atención :v, bueno, este selector hace exactamente eso */
+body,
+html,
+.fondo-liso {
+    height: 100vh;
+    width: 100vw; /* Lo mismo que expliqué de vh pero en este caso vw es del ancho de la ventana (viewport width), y vh es del alto de la ventana */
+    overflow: hidden; /* Esto evita las barras de scroll por si algo se desborda (como las burbujas animadas xd, y bue, vamos emparchando cositas) */
+}
+
+/* Acá le doy un fondo liso a la página. La idea es que el fondo liso sea de un color sólido, y las burbujas sean una imagen que se superponga al fondo liso*/
+.fondo-liso {
+    position: absolute; /* Esto hace como que el fondo liso se “pegue” a la pantalla, ocupando el 100% sin afectar el contenido.*/
+    background-color: var(--amarillo);
+    z-index: -2; /* Uh esta propiedad es God, la aprendí en el Tp pasado, es como que te permite controlar las "capas", es para que el fondo liso quede detrás de las burbujas y del contenido de la página */
+}
+
+/* Esta clase es la que contiene a las burbujas (ysi, que querés que te diga -_-) */
+.contenedor-burbujas {
+    position: absolute; /* Lo mismo que el fondo liso, pero esta es la capa que tiene las burbujas girando */
+    width: 100vw; 
+    height: 100vh; 
+    z-index: -1; /* Una capa por encima del fondo-liso, pero por debajo del contenido */
+    overflow: visible;
+}
+
+/* Definimos el estilo general de las burbujas */
+.burbuja {
+    fill: white; /* Rellenamos */
+    stroke: white; /* Bordecito de la Burbuja */
+    opacity: 0.6; /* Le damos un toque de transparencia aesthetics */
+    animation: movimiento-circular 30s infinite linear; /* Llamo a la Animación que programé en keyframes (abajo de todo) que las hace girar en círculo. La animación dura 30 segundos, se repite infinitamente (infinite) y de forma lineal (linear) */
+    transform-origin: center; /* Acá lo que hago es decirle que arranque la animación desde el centro de la burbuja */
+}
+
+/* Acá abajo están las burbujas individuales. Cada una con diferente tamaño (r), posición (transform) y delay (animation-delay) */
+
+/* El nth-child, esa cosa rara, es algo que aprendí a usar en el Tp anterior, es un selector que selecciona el hijo número n de un elemento, en este caso, el hijo número n de la clase burbuja. Por ejemplo, nth-child(1) selecciona el primer hijo de la clase burbuja, y así sucesivamente. Está piola porque con esto lo que hago es crear 6 burbujas diferentes y programarle el comportamiento a cada una reutilizando la misma clase. */
+
+.burbuja:nth-child(1) {
+    r: 160; /* Acá le doy el tamaño de la burbuja, en este caso 160px de radio */
+    transform: rotate(0deg) translateX(400lpx) rotate(0deg); /* Acá le digo que arranque desde el 0, y que se mueva 400px a la derecha, y después vuelva a su posición original (0deg) */
+}
+
+.burbuja:nth-child(2) {
+    r: 130;
+    transform: rotate(90deg) translateX(350px) rotate(-90deg);
+    animation-delay: -5s; /* Acá le doy un delay de 5 segundos a la animación, para que no todas las burbujas giren al mismo tiempo y parezca más natural */
+}
+
+/* Y así con todas, no te voy a explicar cada una tampoco :v */
+.burbuja:nth-child(3) {
+    r: 150;
+    transform: rotate(180deg) translateX(300px) rotate(-180deg);
+    animation-delay: -10s;
+}
+
+.burbuja:nth-child(4) {
+    r: 170;
+    transform: rotate(270deg) translateX(250px) rotate(-270deg);
+    animation-delay: -15s;
+}
+
+.burbuja:nth-child(5) {
+    r: 140;
+    transform: rotate(45deg) translateX(320px) rotate(-45deg);
+    animation-delay: -2s;
+}
+
+.burbuja:nth-child(6) {
+    r: 160;
+    transform: rotate(135deg) translateX(280px) rotate(-135deg);
+    animation-delay: -7s;
+}
+
+/* keyframes es una propiedad que define la animación, en este caso lo que hace es definir el movimiento circular de las burbujas */
+@keyframes movimiento-circular {
+    from {
+        transform: rotate(0deg) translateX(400px) rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg) translateX(400px) rotate(-360deg);
+    }
+} /* La animación empieza desde el 0% (from) y termina en el 100% (to), y lo que hace es rotar la burbuja 360 grados, y moverla 400px a la derecha, y después volver a su posición original (rotate(-360deg)) */
+
